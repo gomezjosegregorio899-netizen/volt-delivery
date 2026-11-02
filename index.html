@@ -9,175 +9,132 @@
 :root{--bg:#f3f3f5;--card:#fff;--tx:#0b0b0f;--mut:#6b6f7b;--line:#e7e7ec;--in:#f0f0f3;--ac:#ff4b3e;--ac2:#ff8a3d;--ok:#12b76a;--inv:#0b0b0f;--invtx:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000;--card:#151518;--tx:#fff;--mut:#9a9aa6;--line:#26262c;--in:#202026;--inv:#fff;--invtx:#000;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#000;--card:#151518;--tx:#fff;--mut:#9a9aa6;--line:#26262c;--in:#202026;--inv:#fff;--invtx:#000;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
-main{max-width:520px;margin:0 auto;padding:14px 14px 130px}
-.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.logo{font-weight:800;font-size:22px;letter-spacing:-.5px}.logo i{font-style:normal;color:var(--ac)}
-.ic{width:42px;height:42px;border-radius:50%;border:0;background:var(--card);color:var(--tx);font-size:18px;box-shadow:0 1px 3px rgba(0,0,0,.12)}
-.hero{border-radius:24px;padding:22px 20px;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2));position:relative;overflow:hidden;margin-bottom:14px}
-.hero:after{content:"🛵";position:absolute;right:10px;bottom:-8px;font-size:84px;opacity:.9}
-.hero h1{margin:0 0 6px;font-size:26px;line-height:1.1;letter-spacing:-.5px;max-width:70%}
-.hero p{margin:0 0 12px;opacity:.95;font-size:14px;max-width:65%}
-.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{background:rgba(255,255,255,.22);border-radius:99px;padding:5px 10px;font-size:12px;font-weight:600}
-h2{font-size:17px;margin:18px 4px 10px;letter-spacing:-.3px}
-.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.tile{background:var(--card);border:2px solid transparent;border-radius:18px;padding:12px 4px;text-align:center;font:inherit;font-size:12px;font-weight:600;color:var(--tx);cursor:pointer}
-.tile b{display:block;font-size:26px;margin-bottom:4px}.tile.on{border-color:var(--ac);box-shadow:0 4px 14px rgba(255,75,62,.25)}
-.card{background:var(--card);border-radius:22px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.stop{display:flex;gap:12px}.rail{display:flex;flex-direction:column;align-items:center;padding-top:16px}
-.rail i{width:12px;height:12px;border-radius:50%;background:var(--tx)}.rail i.sq{border-radius:3px;background:var(--ac)}.rail u{flex:1;width:2px;background:var(--line);margin:3px 0;min-height:30px}
-.stop .f{flex:1}
-input,textarea{width:100%;background:var(--in);border:2px solid transparent;border-radius:14px;color:var(--tx);padding:13px 14px;font:inherit;font-size:15px;outline:none;margin-bottom:8px}
-input:focus,textarea:focus{border-color:var(--tx)}textarea{min-height:80px;resize:vertical}
-label{font-size:12px;color:var(--mut);font-weight:600;display:block;margin:6px 2px 4px}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.hint{font-size:12px;color:var(--mut);margin:0 2px 8px}
-.link{display:inline-block;color:var(--ac);font-weight:600;font-size:14px;text-decoration:none;margin:2px}
-button.link{border:0;background:none;font:inherit;font-weight:600;font-size:14px;cursor:pointer;padding:0 4px;margin-left:10px}.tl{margin:-2px 0 10px}.st{font-size:12px;color:var(--mut);margin:-4px 2px 10px}.st .link{margin:0 0 0 4px;font-size:12px}
-.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:14px;z-index:5}
-.bar .t{flex:1}.bar .u{font-size:24px;font-weight:800;letter-spacing:-.5px}.bar .b{font-size:13px;color:var(--mut)}
-.btn{border:0;border-radius:16px;padding:15px 22px;font:inherit;font-weight:800;font-size:16px;cursor:pointer;text-decoration:none;text-align:center;display:block;background:var(--inv);color:var(--invtx)}
-.btn.ac{background:var(--ac);color:#fff}.btn.wa{background:#25d366;color:#fff;width:100%;margin-top:6px}.btn.ghost{background:var(--in);color:var(--tx);width:100%;margin-top:8px;font-weight:600}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,sans-serif;overflow:hidden;-webkit-tap-highlight-color:transparent}
+#app{height:100%;max-width:520px;margin:0 auto;display:flex;flex-direction:column}
+.hd{display:flex;align-items:center;gap:14px;padding:10px 16px 6px}.logo{font-weight:800;font-size:22px;letter-spacing:-.5px}.logo i{font-style:normal;color:var(--ac)}
+.prog{flex:1;height:5px;border-radius:9px;background:var(--line);overflow:hidden}.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:.35s}
+.view{flex:1;overflow-y:auto;padding:4px 16px 18px;-webkit-overflow-scrolling:touch}.view>div{animation:in .3s}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.ft{display:flex;align-items:center;gap:14px;padding:10px 16px;background:var(--card);border-top:1px solid var(--line)}
+.pr{flex:1}.pr b{display:block;font-size:23px;font-weight:800;letter-spacing:-.5px}.pr span{font-size:12px;color:var(--mut)}
+.nav{display:flex;background:var(--card);border-top:1px solid var(--line)}
+.nav button{flex:1;border:0;background:none;color:var(--mut);font:inherit;font-size:11px;font-weight:600;padding:8px 0 6px;display:flex;flex-direction:column;align-items:center;gap:2px}.nav button.on{color:var(--ac)}
+svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+h2{font-size:17px;margin:16px 2px 10px;letter-spacing:-.3px}
+.hero{border-radius:24px;padding:20px;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2));margin-top:6px}.hero h1{margin:0 0 6px;font-size:25px;line-height:1.1;letter-spacing:-.5px}.hero p{margin:0 0 12px;font-size:14px;opacity:.95}
+.chip{background:rgba(255,255,255,.25);border-radius:99px;padding:5px 12px;font-size:12px;font-weight:600}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{display:flex;flex-direction:column;align-items:center;gap:10px;background:var(--card);border:2px solid transparent;border-radius:20px;padding:22px 10px;font:inherit;font-weight:700;color:var(--tx)}.tile svg{width:36px;height:36px;color:var(--ac)}.tile.on{border-color:var(--ac);box-shadow:0 4px 16px rgba(255,75,62,.25)}
+.card{background:var(--card);border-radius:20px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.rc{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--card);border:0;border-radius:18px;padding:16px;margin-bottom:10px;color:var(--tx);font:inherit;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.rc .rt{flex:1;min-width:0}.rc small{display:block;color:var(--mut);font-size:12px}.rc b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--tx)}.dot.sq{border-radius:4px;background:var(--ac)}
+label{display:block;font-size:12px;color:var(--mut);font-weight:600;margin:8px 2px 4px}
+input,textarea{width:100%;background:var(--in);border:2px solid transparent;border-radius:14px;color:var(--tx);padding:13px 14px;font:inherit;font-size:15px;outline:none;margin-bottom:6px}
+input:focus,textarea:focus{border-color:var(--tx)}textarea{min-height:90px;resize:vertical}.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hint{font-size:12px;color:var(--mut);margin:0 2px 8px}.link{color:var(--ac);font-weight:600;font-size:14px;text-decoration:none}
+.btn{border:0;border-radius:16px;padding:15px 22px;font:inherit;font-weight:800;font-size:16px;text-decoration:none;text-align:center;display:block;background:var(--inv);color:var(--invtx)}
+.btn.ac{background:var(--ac);color:#fff}.btn.wa{background:#25d366;color:#fff;width:100%;margin-top:8px}.btn.ghost{background:var(--in);color:var(--tx);width:100%;margin-top:8px;font-weight:600}
+.mini,.ch{border:0;background:var(--in);color:var(--tx);border-radius:12px;padding:8px 12px;font:inherit;font-size:13px;font-weight:600}.ch{border-radius:99px;margin:0 6px 6px 0}
+.row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:14px;color:var(--mut)}.row b{color:var(--tx)}
+.tot{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px dashed var(--line);margin-top:6px;padding-top:12px}.tot .u{font-size:30px;font-weight:800}.tot .b{font-size:13px;color:var(--mut)}
+.pm{display:flex;justify-content:space-between;align-items:center;background:var(--card);border-radius:14px;padding:10px 14px;margin-bottom:6px}.pm span{font-size:12px;color:var(--mut);display:block}.pm b{font-size:16px}
+.err{color:var(--ac);font-size:13px;font-weight:600;min-height:18px;margin:4px 2px}.tag{display:inline-block;background:var(--in);border-radius:99px;padding:5px 10px;font-size:12px;font-weight:600;margin:6px 6px 0 0}
+.ok{width:84px;height:84px;margin:0 auto;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center}.ok svg{width:44px;height:44px;stroke-width:3}
+.stp{display:flex;align-items:center;gap:12px;padding:10px 20px;color:var(--mut);font-weight:600}.stp i{width:14px;height:14px;border-radius:50%;background:var(--line)}.stp.on{color:var(--tx)}.stp.on i{background:var(--ok)}
+#toast{position:fixed;left:16px;right:16px;bottom:calc(150px + env(safe-area-inset-bottom,0px));background:var(--inv);color:var(--invtx);padding:12px 16px;border-radius:14px;font-weight:600;font-size:14px;text-align:center;opacity:0;pointer-events:none;transition:.25s;z-index:20}#toast.on{opacity:1}
 .shade{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.25s;z-index:8}.shade.open{opacity:1;pointer-events:auto}
-.sheet{position:fixed;left:0;right:0;bottom:0;max-width:520px;margin:0 auto;background:var(--card);border-radius:26px 26px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:.3s;z-index:9;max-height:92%;overflow-y:auto}.sheet.open{transform:none}
-.grab{width:42px;height:5px;border-radius:9px;background:var(--line);margin:0 auto 12px}
-.row{display:flex;justify-content:space-between;padding:7px 0;font-size:14px;color:var(--mut)}.row b{color:var(--tx)}
-.tot{display:flex;justify-content:space-between;align-items:flex-end;border-top:1px dashed var(--line);margin-top:6px;padding-top:12px}.tot .u{font-size:30px;font-weight:800}.tot .b{font-size:15px;color:var(--mut)}
-.pm{display:flex;justify-content:space-between;align-items:center;background:var(--in);border-radius:14px;padding:10px 14px;margin-bottom:6px}
-.pm span{font-size:12px;color:var(--mut);display:block}.pm b{font-size:16px}.pm button{border:0;background:var(--card);color:var(--tx);border-radius:10px;padding:8px 12px;font:inherit;font-size:12px;font-weight:600}
-.err{color:var(--ac);font-size:13px;font-weight:600;min-height:18px;margin:6px 2px}
-.tag{display:inline-block;background:var(--in);border-radius:99px;padding:5px 10px;font-size:12px;font-weight:600;margin:0 6px 6px 0}
-.hide{display:none}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-width:520px;margin:0 auto;background:var(--card);border-radius:26px 26px 0 0;padding:10px 18px calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:.3s;z-index:9;max-height:92%;overflow-y:auto}.sheet.open{transform:none}
+.grab{width:42px;height:5px;border-radius:9px;background:var(--line);margin:0 auto 10px}.hide{display:none}.sheet h2{margin-top:4px}
 </style>
 </head>
 <body>
-<main>
-<div class="hd"><div class="logo">VOLT<i>.</i></div><button class="ic" id="gear" aria-label="Ajustes">⚙</button></div>
-<div class="hero"><h1>Pídelo y lo llevamos</h1><p>Mandados, paquetes y comida, puerta a puerta.</p><div class="chips"><span class="chip">Desde $3</span><span class="chip">Pago móvil</span><span class="chip">Rápido</span></div></div>
-
-<h2>¿Qué necesitas?</h2>
-<div class="tiles" id="tiles"></div>
-
-<h2>Ruta</h2>
-<div class="card">
-<div class="stop"><div class="rail"><i></i><u></u></div><div class="f"><label>Recoger en</label><input id="p1" placeholder="Enlace de Google Maps"><input id="r1" placeholder="Referencia (opcional)"><div class="tl"><a class="link" id="s1" target="_blank" rel="noopener">🔎 Buscar en Maturín</a><button class="link" data-g="p1">📍 Mi ubicación</button></div><div class="st" id="st1"></div></div></div>
-<div class="stop"><div class="rail" style="padding-top:0"><u style="min-height:14px"></u><i class="sq"></i></div><div class="f"><label>Entregar en</label><input id="p2" placeholder="Enlace de Google Maps"><input id="r2" placeholder="Referencia (opcional)"><div class="tl"><a class="link" id="s2" target="_blank" rel="noopener">🔎 Buscar en Maturín</a><button class="link" data-g="p2">📍 Mi ubicación</button></div><div class="st" id="st2"></div></div></div>
-<label>Distancia (km)</label><input id="km" type="number" min="0" step="0.1" inputmode="decimal" placeholder="Ej: 6.5">
-<p class="hint" id="kmHint">Pega ambos enlaces completos para estimarla o escríbela.</p>
-<a class="link" id="mapBtn" target="_blank" rel="noopener">📍 Medir ruta en Google Maps</a>
-<div id="tags" style="margin-top:6px"></div>
+<div id="app">
+<div class="hd"><div class="logo">VOLT<i>.</i></div><div class="prog" id="prog"><i></i></div></div>
+<div class="view" id="view"></div>
+<div class="ft" id="ft"><div class="pr"><b id="usd">$0.00</b><span id="bs"></span></div><button class="btn ac" id="next">Continuar</button></div>
+<nav class="nav" id="nav"></nav>
 </div>
+<div id="toast"></div><div class="shade" id="shade"></div>
 
-<h2>Detalles</h2>
-<div class="card">
-<label>¿Qué buscamos o recogemos?</label><textarea id="det" placeholder="Describe el pedido, local, nombre de quien recibe…"></textarea>
-<div class="g2"><div><label>Tu nombre</label><input id="nom" autocomplete="name"></div><div><label>Tu teléfono</label><input id="tel" type="tel" inputmode="tel" placeholder="0412…"></div></div>
-</div>
-<div class="err" id="err"></div>
-</main>
+<div class="sheet" id="loc"><div class="grab"></div><h2 id="lt"></h2>
+<button class="btn ac" id="gb" style="width:100%">Usar mi ubicación actual</button>
+<label>Enlace de Google Maps o coordenadas</label><input id="ll" placeholder="Pega aquí el enlace">
+<div class="hint" id="ls"></div>
+<label>Referencia (calle, local, casa…)</label><input id="lr" placeholder="Ej: Frente a la plaza, casa azul">
+<a class="link" id="sl" target="_blank" rel="noopener">Buscar en Google Maps (Maturín)</a>
+<h2 style="font-size:14px">Guardadas y recientes</h2><div id="chs"></div>
+<label>Guardar esta dirección como</label><div class="g2"><input id="ln" placeholder="Casa, Trabajo, Local"><button class="mini" id="sa">Guardar</button></div>
+<button class="btn" id="ld" style="width:100%;margin-top:6px">Listo</button></div>
 
-<div class="bar"><div class="t"><div class="u" id="usd">$0.00</div><div class="b" id="bs">Bs 0,00</div></div><button class="btn ac" id="go">Continuar</button></div>
-<div class="shade" id="shade"></div>
+<div class="sheet" id="perm"><div class="grab"></div><div class="ok" style="margin-top:8px"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11zM12 12a2 2 0 100-4 2 2 0 000 4z"/></svg></div>
+<h2 style="text-align:center">Activa tu ubicación</h2><p class="hint" style="text-align:center">La usamos solo para marcar dónde recoger o entregar tu pedido en Maturín.</p>
+<button class="btn ac" id="pg" style="width:100%">Permitir ubicación</button><button class="btn ghost" id="pn">Ahora no</button></div>
 
-<div class="sheet" id="pay"><div class="grab"></div>
-<h2 style="margin-top:4px">Confirma y paga</h2>
-<div id="lines"></div>
-<div class="tot"><div><div class="b" id="rt"></div></div><div style="text-align:right"><div class="u" id="usd2"></div><div class="b" id="bs2"></div></div></div>
-<h2>Pago móvil</h2><div id="pm"></div>
-<label>Número de referencia del pago</label><input id="ref" inputmode="numeric" placeholder="Referencia">
-<div class="err" id="err2"></div>
-<a class="btn wa" id="wa" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a>
-<button class="btn ghost" id="cp">Copiar mensaje</button>
-<textarea id="raw" class="hide" readonly></textarea>
-<p class="hint" style="margin-top:10px">Se abre WhatsApp con tu pedido y pago. Si no abre, copia el mensaje y envíalo al +58 412-7970923.</p>
-</div>
-
-<div class="sheet" id="adm"><div class="grab"></div><h2 style="margin-top:4px">Ajustes del servicio</h2>
+<div class="sheet" id="adm"><div class="grab"></div><h2>Ajustes del servicio</h2>
 <div id="pinBox"><input id="pin" type="password" inputmode="numeric" placeholder="PIN de administrador"><div class="err" id="pinErr"></div><button class="btn ac" style="width:100%" id="pinOk">Entrar</button></div>
 <div id="cfgBox" class="hide"><div class="g2" id="cfgFields"></div>
 <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input type="checkbox" id="rainOn" style="width:auto;margin:0"> Lluvia activa (aplica recargo)</label>
-<button class="btn ac" style="width:100%;margin-top:12px" id="save">Guardar</button>
-<p class="hint">Se guardan en este dispositivo.</p></div></div>
+<button class="btn ac" style="width:100%;margin-top:12px" id="save">Guardar</button><p class="hint">Se guardan en este dispositivo.</p></div></div>
 
 <script>
 const D={base:3,baseKm:5,extra:0.5,night:1,nStart:22,nEnd:5,rain:1,rainOn:false,rate:889.57,rateDate:"1 nov 2026",wa:"584127970923",banco:"0105",ci:"20312069",tel:"04127970923",pin:"1234"};
-let C=Object.assign({},D);
-try{Object.assign(C,JSON.parse(localStorage.getItem("cfg")||"{}"))}catch(e){}
-const $=id=>document.getElementById(id);
-const S=[["🛵","Mandado"],["📦","Paquete"],["🍔","Comida"],["🏪","Comercio"]];
-let srv="Mandado",kmAuto=true,Q;
-const R={},N=!!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform());
-async function expand(u){try{const H=Capacitor.Plugins.CapacitorHttp;
-const r=await H.get({url:u,headers:{"User-Agent":"Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36","Accept-Language":"es-VE,es;q=0.9"}});
-const f=r.url||u;if(coords(f)&&f!==u)return f;
-const d=typeof r.data==="string"?r.data:"";
-const m=d.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/)||d.match(/center=(-?\d+\.\d+)%2C(-?\d+\.\d+)/)||d.match(/\[null,null,(-?\d+\.\d+),(-?\d+\.\d+)\]/);
-return m?"https://www.google.com/maps?q="+m[1]+","+m[2]:u}catch(e){return u}}
-$("tiles").innerHTML=S.map((s,i)=>`<button class="tile${i?"":" on"}" data-s="${s[1]}"><b>${s[0]}</b>${s[1]}</button>`).join("");
-const F=[["base","Base USD"],["baseKm","Km incluidos"],["extra","USD por km extra"],["night","Recargo noche USD"],["nStart","Noche desde (h)"],["nEnd","Noche hasta (h)"],["rain","Recargo lluvia USD"],["rate","Tasa BCV Bs/USD"],["wa","WhatsApp (con 58)"],["banco","Banco (código)"],["ci","Cédula/RIF"],["tel","Teléfono pago móvil"],["pin","PIN admin"]];
-$("cfgFields").innerHTML=F.map(f=>`<div><label>${f[1]}</label><input data-k="${f[0]}" value="${C[f[0]]}" style="margin:0"></div>`).join("");
-$("rainOn").checked=C.rainOn;
+const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let C=Object.assign({},D,ld("cfg",{}));
+const $=id=>document.getElementById(id),R={},N=!!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform());
+const IC={home:"M3 11l9-8 9 8v10H3z",list:"M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2zM9 8h6M9 12h6",user:"M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0",pin:"M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11zM12 12a2 2 0 100-4 2 2 0 000 4z",bag:"M6 7h12l1 14H5zM9 7a3 3 0 016 0",box:"M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10",food:"M7 3v8a2 2 0 004 0V3M9 3v18M17 3c-2 2-2 6 0 8v10",store:"M3 9l2-5h14l2 5a3 3 0 01-6 0 3 3 0 01-6 0 3 3 0 01-6 0zM5 13v8h14v-8",chk:"M5 12l5 5 9-10"};
+const ic=n=>`<svg class="i" viewBox="0 0 24 24"><path d="${IC[n]}"/></svg>`;
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const money=n=>"$"+n.toFixed(2),bsf=n=>"Bs "+n.toLocaleString("es-VE",{minimumFractionDigits:2,maximumFractionDigits:2});
-function sh(id,o){$(id).classList.toggle("open",o);$("shade").classList.toggle("open",o)}
-function isNight(){const h=new Date().getHours();return C.nStart>C.nEnd?(h>=C.nStart||h<C.nEnd):(h>=C.nStart&&h<C.nEnd)}
+let S={tab:"home",step:0,srv:"Mandado",from:{},to:{},km:"",manual:false,det:"",nom:ld("nom",""),tel:ld("tel",""),ref:"",which:"from",ch:[]};
+const SH=/goo\.gl|maps\.app|g\.co\//;
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2600)}
+function sh(id,o){["loc","adm","perm"].forEach(x=>$(x).classList.toggle("open",!!o&&x===id));$("shade").classList.toggle("open",!!o)}
 function coords(u){u=R[u]||u;try{u=decodeURIComponent(u)}catch(x){}const m=u.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/)||u.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/)||u.match(/[?&](?:q|ll|query|destination|origin|center|daddr|saddr)=\s*(-?\d+\.\d+)\s*,\s*(-?\d+\.\d+)/)||u.match(/(-?\d{1,2}\.\d{3,})\s*,\s*(-?\d{1,3}\.\d{3,})/);return m?[+m[1],+m[2]]:null}
 function hav(a,b){const r=x=>x*Math.PI/180,dl=r(b[0]-a[0]),dn=r(b[1]-a[1]),h=Math.sin(dl/2)**2+Math.cos(r(a[0]))*Math.cos(r(b[0]))*Math.sin(dn/2)**2;return 12742*Math.asin(Math.sqrt(h))}
-function calc(){
-const a=coords($("p1").value),b=coords($("p2").value);
-if(a&&b){const e=Math.round(hav(a,b)*1.35*10)/10;if(kmAuto)$("km").value=e;$("kmHint").textContent="Estimado por ruta: "+e+" km. Confirmaremos la distancia real."}
-$("mapBtn").href="https://www.google.com/maps/dir/?api=1&travelmode=driving&origin="+encodeURIComponent(a?a.join(","):$("r1").value||$("p1").value)+"&destination="+encodeURIComponent(b?b.join(","):$("r2").value||$("p2").value);
-[["s1","r1"],["s2","r2"]].forEach(p=>{$(p[0]).href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(($(p[1]).value.trim()?$(p[1]).value.trim()+" ":"")+"Maturín, Monagas, Venezuela")});
-[["st1","p1"],["st2","p2"]].forEach(p=>{const v=$(p[1]).value.trim(),c=coords(v),e=$(p[0]);if(!v){e.textContent="";return}
-if(c){const inM=c[0]>9.55&&c[0]<9.95&&c[1]>-63.45&&c[1]<-62.95;e.innerHTML="✅ Ubicación reconocida · "+c[0].toFixed(5)+", "+c[1].toFixed(5)+(inM?"":" · ⚠ fuera de Maturín")+' <a class="link" target="_blank" rel="noopener" href="https://www.google.com/maps?q='+c[0]+","+c[1]+'">Ver</a>'}
-else if(/goo\.gl|maps\.app/.test(v))e.textContent=N&&R[v]===""?"⏳ Leyendo enlace…":N?"⚠ No pude leer ese enlace. Pega las coordenadas o escribe los km.":"⚠ Enlace corto: esta página no puede leerlo. Pega las coordenadas o el enlace de ubicación de WhatsApp, o escribe los km.";
-else e.textContent="⚠ No reconocí el enlace. Pega un enlace de Google Maps o usa 📍 Mi ubicación."});
-const km=Math.max(0,parseFloat($("km").value)||0),ex=km>C.baseKm?Math.ceil(km-C.baseKm):0;
-let tot=+C.base;const L=[["Base (hasta "+C.baseKm+" km)",+C.base]],T=[];
+async function expand(u){try{const r=await Capacitor.Plugins.CapacitorHttp.get({url:u,headers:{"User-Agent":"Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Mobile Safari/537.36","Accept-Language":"es-VE,es;q=0.9"}});
+const f=r.url||u;if(f!==u&&coords(f))return f;const d=typeof r.data==="string"?r.data:"";
+const m=d.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/)||d.match(/center=(-?\d+\.\d+)%2C(-?\d+\.\d+)/)||d.match(/\[null,null,(-?\d+\.\d+),(-?\d+\.\d+)\]/);
+return m?"https://www.google.com/maps?q="+m[1]+","+m[2]:u}catch(e){return u}}
+const pc=p=>coords((p&&p.link)||"");
+const ptxt=p=>!p?"":p.ref||(p.link?(pc(p)?"Ubicación en el mapa":"Enlace de Google Maps"):"");
+function isNight(){const h=new Date().getHours();return C.nStart>C.nEnd?(h>=C.nStart||h<C.nEnd):(h>=C.nStart&&h<C.nEnd)}
+function price(){const km=Math.max(0,parseFloat(S.km)||0),ex=km>C.baseKm?Math.ceil(km-C.baseKm):0;let tot=+C.base;const L=[["Base (hasta "+C.baseKm+" km)",+C.base]],T=[];
 if(ex){const v=ex*C.extra;tot+=v;L.push([ex+" km adicionales",v])}
-if(isNight()){tot+=+C.night;L.push(["🌙 Incentivo nocturno",+C.night]);T.push("🌙 Tarifa nocturna")}
-if(C.rainOn){tot+=+C.rain;L.push(["🌧 Incentivo por lluvia",+C.rain]);T.push("🌧 Lluvia")}
-Q={km,tot,L};
-$("tags").innerHTML=T.map(t=>`<span class="tag">${t}</span>`).join("");
-$("lines").innerHTML=L.map(l=>`<div class="row"><span>${l[0]}</span><b>${money(l[1])}</b></div>`).join("");
-const u=money(tot),s=bsf(tot*C.rate);
-$("usd").textContent=$("usd2").textContent=u;$("bs").textContent=$("bs2").textContent=s;
-$("rt").textContent="Tasa BCV "+bsf(+C.rate)+" ("+C.rateDate+")";
-$("wa").href="https://wa.me/"+C.wa+"?text="+encodeURIComponent(msg());
-}
-function msg(){const q=Q;return["*NUEVO PEDIDO DELIVERY*","","*Servicio:* "+srv,"*Cliente:* "+$("nom").value,"*Teléfono:* "+$("tel").value,"",
-"*Recoger:* "+($("p1").value||"-")+($("r1").value?"\n"+$("r1").value:""),
-"*Entregar:* "+($("p2").value||"-")+($("r2").value?"\n"+$("r2").value:""),"",
-"*Pedido:* "+$("det").value,"","*Distancia:* "+q.km+" km"].concat(q.L.map(l=>"• "+l[0]+": "+money(l[1])),
-["","*TOTAL:* "+money(q.tot)+" / "+bsf(q.tot*C.rate),"Tasa BCV: "+C.rate,"*Pago móvil ref.:* "+$("ref").value]).join("\n")}
-function pm(){$("pm").innerHTML=[["Banco",C.banco],["Cédula",C.ci],["Teléfono",C.tel]].map(r=>`<div class="pm"><div><span>${r[0]}</span><b>${r[1]}</b></div><button data-c="${r[1]}">Copiar</button></div>`).join("")}
-function missing(){const m=[];
-if(!$("p1").value.trim()&&!$("r1").value.trim())m.push("dónde recoger");
-if(!$("p2").value.trim()&&!$("r2").value.trim())m.push("dónde entregar");
-if(!Q.km)m.push("la distancia");if(!$("det").value.trim())m.push("el detalle del pedido");
-if(!$("nom").value.trim())m.push("tu nombre");if(!$("tel").value.trim())m.push("tu teléfono");return m}
-document.addEventListener("click",e=>{const t=e.target.closest("button,a");if(!t)return;
-if(t.dataset.c){try{navigator.clipboard.writeText(t.dataset.c)}catch(x){}t.textContent="¡Listo!";setTimeout(()=>t.textContent="Copiar",1200)}
-if(t.dataset.g){const id=t.dataset.g,st=$("st"+id.slice(1));st.textContent="⏳ Obteniendo tu ubicación…";
-const ok=(la,lo)=>{$(id).value="https://www.google.com/maps?q="+la.toFixed(6)+","+lo.toFixed(6);$("err").textContent="";calc()};
-const bad=()=>{st.textContent="⚠ No pude leer el GPS. Activa la ubicación del teléfono y el permiso de la app, o pega las coordenadas."};
-(async()=>{try{const G=window.Capacitor&&Capacitor.Plugins&&Capacitor.Plugins.Geolocation;
-if(N&&G){await G.requestPermissions();const p=await G.getCurrentPosition({enableHighAccuracy:true,timeout:15000});ok(p.coords.latitude,p.coords.longitude)}
-else navigator.geolocation.getCurrentPosition(p=>ok(p.coords.latitude,p.coords.longitude),bad,{enableHighAccuracy:true,timeout:15000})}catch(x){bad()}})()}
-if(t.dataset.s){srv=t.dataset.s;document.querySelectorAll(".tile").forEach(b=>b.classList.toggle("on",b===t));calc()}});
-["p1","p2","r1","r2","km","det","nom","tel","ref"].forEach(i=>$(i).addEventListener("input",()=>{if(i==="km")kmAuto=false;if(N&&(i==="p1"||i==="p2")){const v=$(i).value.trim();if(/goo\.gl|maps\.app|g\.co\//.test(v)&&R[v]===undefined){R[v]="";expand(v).then(x=>{R[v]=x||v;calc()})}}calc()}));
-$("go").onclick=()=>{calc();const m=missing();if(m.length){$("err").textContent="Falta: "+m.join(", ")+".";window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});return}$("err").textContent="";pm();sh("pay",true)};
-$("wa").addEventListener("click",e=>{calc();if(!$("ref").value.trim()){e.preventDefault();$("err2").textContent="Escribe la referencia de tu pago móvil.";return}$("err2").textContent=""});
-$("cp").onclick=()=>{calc();const t=msg();let ok=false;try{navigator.clipboard.writeText(t);ok=true}catch(x){}
-if(ok){$("cp").textContent="¡Mensaje copiado!"}else{$("raw").classList.remove("hide");$("raw").value=t;$("raw").select()}};
-$("shade").onclick=()=>{sh("pay",false);sh("adm",false)};
-$("gear").onclick=()=>sh("adm",true);
-$("pinOk").onclick=()=>{if($("pin").value===String(C.pin)){$("pinBox").classList.add("hide");$("cfgBox").classList.remove("hide")}else $("pinErr").textContent="PIN incorrecto"};
-$("save").onclick=()=>{document.querySelectorAll("[data-k]").forEach(i=>{const k=i.dataset.k,v=i.value.trim();C[k]=typeof D[k]==="number"?(parseFloat(v.replace(",","."))||0):v});
-C.rainOn=$("rainOn").checked;C.rateDate=new Date().toLocaleDateString("es-VE");
-try{localStorage.setItem("cfg",JSON.stringify(C))}catch(e){}
-pm();calc();sh("adm",false)};
-pm();calc();
-</script>
-</body>
-</html>
+if(isNight()){tot+=+C.night;L.push(["Incentivo nocturno",+C.night]);T.push("Tarifa nocturna")}
+if(C.rainOn){tot+=+C.rain;L.push(["Incentivo por lluvia",+C.rain]);T.push("Lluvia")}
+return{km,tot,L,T}}
+function msg(){const q=price(),f=p=>(p.link||"-")+(p.ref?"\n"+p.ref:"");return["*NUEVO PEDIDO DELIVERY*","","*Servicio:* "+S.srv,"*Cliente:* "+S.nom,"*Teléfono:* "+S.tel,"","*Recoger:* "+f(S.from),"*Entregar:* "+f(S.to),"","*Pedido:* "+S.det,"","*Distancia:* "+q.km+" km"].concat(q.L.map(l=>"• "+l[0]+": "+money(l[1])),["","*TOTAL:* "+money(q.tot)+" / "+bsf(q.tot*C.rate),"Tasa BCV: "+C.rate,"*Pago móvil ref.:* "+S.ref]).join("\n")}
+function autoKm(){const a=pc(S.from),b=pc(S.to);if(a&&b&&!S.manual)S.km=String(Math.round(hav(a,b)*1.35*10)/10)}
+function upd(){autoKm();const q=price();$("usd").textContent=money(q.tot);$("bs").textContent=bsf(q.tot*C.rate);
+$("prog").firstElementChild.style.width=Math.min(S.step+1,4)*25+"%";
+if($("km")){if(!S.manual&&document.activeElement!==$("km"))$("km").value=S.km;
+const a=pc(S.from),b=pc(S.to),o=a?a.join(","):S.from.ref||S.from.link||"",d=b?b.join(","):S.to.ref||S.to.link||"";
+$("mp").href="https://www.google.com/maps/dir/?api=1&travelmode=driving&origin="+encodeURIComponent(o)+"&destination="+encodeURIComponent(d);
+$("tags").innerHTML=q.T.map(t=>`<span class="tag">${t}</span>`).join("")}
+if($("wa"))$("wa").href="https://wa.me/"+C.wa+"?text="+encodeURIComponent(msg())}
+const V0=()=>`<div><div class="hero"><h1>Pídelo y lo llevamos</h1><p>Mandados, paquetes y comida en Maturín.</p><span class="chip">Desde $${+C.base}</span></div><h2>¿Qué necesitas?</h2><div class="tiles">${[["bag","Mandado"],["box","Paquete"],["food","Comida"],["store","Comercio"]].map(s=>`<button class="tile${S.srv===s[1]?" on":""}" data-s="${s[1]}">${ic(s[0])}${s[1]}</button>`).join("")}</div></div>`;
+const rc=(w,l)=>`<button class="rc" data-l="${w}"><span class="dot${w==="to"?" sq":""}"></span><span class="rt"><small>${l}</small><b>${esc(ptxt(S[w]))||"Elegir ubicación"}</b></span>${ic("pin")}</button>`;
+const V1=()=>`<div><h2>Tu ruta</h2>${rc("from","Recoger en")}${rc("to","Entregar en")}<label>Distancia (km)</label><input id="km" type="number" min="0" step="0.1" inputmode="decimal" value="${esc(S.km)}" placeholder="Ej: 6.5"><p class="hint">${pc(S.from)&&pc(S.to)?"Estimada por ruta. Confirmaremos la distancia real.":"Se calcula sola con ubicaciones reconocidas, o escríbela."}</p><a class="link" id="mp" target="_blank" rel="noopener">Medir ruta en Google Maps</a><div id="tags"></div></div>`;
+const V2=()=>`<div><h2>Detalles</h2><label>¿Qué buscamos o recogemos?</label><textarea id="det" placeholder="Describe el pedido, el local, quién recibe…">${esc(S.det)}</textarea><div class="g2"><div><label>Tu nombre</label><input id="nom" value="${esc(S.nom)}"></div><div><label>Tu teléfono</label><input id="tel" type="tel" inputmode="tel" value="${esc(S.tel)}"></div></div></div>`;
+const V3=()=>{const q=price();return `<div><h2>Confirma y paga</h2><div class="card">${q.L.map(l=>`<div class="row"><span>${l[0]}</span><b>${money(l[1])}</b></div>`).join("")}<div class="tot"><div class="b">Tasa BCV ${bsf(+C.rate)}<br>${C.rateDate}</div><div style="text-align:right"><div class="u">${money(q.tot)}</div><div class="b">${bsf(q.tot*C.rate)}</div></div></div></div>
+<h2>Pago móvil</h2>${[["Banco",C.banco],["Cédula",C.ci],["Teléfono",C.tel]].map(r=>`<div class="pm"><div><span>${r[0]}</span><b>${esc(r[1])}</b></div><button class="mini" data-c="${esc(r[1])}">Copiar</button></div>`).join("")}
+<label>Número de referencia del pago</label><input id="ref" inputmode="numeric" value="${esc(S.ref)}" placeholder="Referencia"><div class="err" id="err"></div>
+<a class="btn wa" id="wa" target="_blank" rel="noopener">Enviar pedido por WhatsApp</a><button class="btn ghost" id="cp">Copiar mensaje</button><textarea id="raw" class="hide" readonly></textarea><button class="btn ghost" data-b="2">Volver</button></div>`};
+const V4=()=>`<div style="text-align:center;padding-top:24px"><div class="ok">${ic("chk")}</div><h2 style="margin-top:14px">¡Pedido enviado!</h2><p class="hint">Verificamos tu pago y te confirmamos por WhatsApp.</p>${["Recibido","En camino","Entregado"].map((t,i)=>`<div class="stp${i?"":" on"}"><i></i>${t}</div>`).join("")}<button class="btn ac" style="width:100%;margin-top:18px" data-n="1">Nuevo pedido</button></div>`;
+const VO=()=>{const H=ld("hist",[]);return `<div><h2>Mis pedidos</h2>${H.length?H.map((o,i)=>`<div class="card"><div class="row"><b>${esc(o.srv)}</b><span>${new Date(o.t).toLocaleDateString("es-VE")}</span></div><div class="hint">${esc(ptxt(o.to)||"Entrega")}</div><div class="row"><b>${money(o.tot)}</b><button class="mini" data-r="${i}">Repetir</button></div></div>`).join(""):'<p class="hint">Aún no tienes pedidos.</p>'}</div>`};
+const VP=()=>{const A=ld("addr",[]);return `<div><h2>Mi perfil</h2><div class="card"><label>Nombre</label><input id="nom" value="${esc(S.nom)}"><label>Teléfono</label><input id="tel" type="tel" inputmode="tel" value="${esc(S.tel)}"></div><h2>Direcciones guardadas</h2>${A.length?A.map((a,i)=>`<div class="card row"><b>${esc(a.n)}</b><button class="mini" data-d="${i}">Borrar</button></div>`).join(""):'<p class="hint">Guarda Casa, Trabajo o tu Local al elegir una ubicación.</p>'}<button class="btn ghost" id="adm0">Ajustes del servicio</button></div>`};
+function render(){const h=S.tab==="home",s=S.step;
+document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("on",b.dataset.t===S.tab));
+$("ft").style.display=h&&s<3?"flex":"none";$("prog").style.visibility=h?"visible":"hidden";
+$("next").textContent=s===2?"Ir a pagar":"Continuar";
+$("view").innerHTML=h?[V0,V1,V2,V3,V4][s]():S.tab==="orders"?VO():VP();$("view").scrollTop=0;upd()}
+function miss(s){if(s===1){if(!ptxt(S.from)||!ptxt(S.to))return"Elige dónde recoger y dónde entregar.";if(!(parseFloat(S.km)>0))return"Indica la distancia en km."}
+if(s===2){if(!S.det.trim())return"Cuéntanos qué necesitas.";if(!S.nom.trim()||!S.tel.trim())return"Falta tu nombre o teléfono."}return""}
+function rs(){["from","to"].forEach(w=>{const v=(S[w].link||"").trim();if(N&&SH.test(v)&&R[v]===undefined){R[v]="";expand(v).then(x=>{R[v]=x||v;stat();upd();if(S.tab==="home"&&S.step===1)render()})}})}
+function stat(){const v=(S[S.which].link||"").trim(),c=coords(v),e=$("ls");if(!v){e.textContent="";return}
+if(c){const m=c[0]>9.55&&c[0]<9.95&&c[1]>-63.45&&c[1]<-62.95;e.innerHTML="✅ Ubicación reconocida · "+c[0].toFixed(5)+", "+c[1].toFixed(5)+(m?"":" · ⚠ fuera de Maturín")+` <a class="link" target="_blank" rel="noopener" href="https://www.google.com/maps?q=${c[0]},${c[1]}">Ver</a>`}
+else if(SH.test(v))e.textContent=N?(R[v]===""?"⏳ Leyendo enlace…":"⚠ No pude leer ese enlace. Pega coordenadas o usa tu ubicación."):"⚠ Enlace corto: solo la app lo puede leer. Pega coordenadas o usa tu ubicación.";
+else e.textContent="⚠ No reconocí el enlace. Pega un enlace de Google Maps o usa tu ubicación."}
+function setP(){S[S.which]={link:$("ll").value.trim(),ref:$("lr").value.trim()};$("sl").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent((S[S.which].ref?S[S.which].ref+" ":"")+"Maturín, Monagas, Venezuela");r
